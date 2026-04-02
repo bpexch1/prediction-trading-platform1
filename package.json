@@ -1,0 +1,20 @@
+{
+  "name": "prediction-trading-platform",
+  "version": "1.0.0",
+  "description": "A full-stack prediction trading platform",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "install-all": "npm install",
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "start": "npm run start --workspace=backend",
+    "test": "npm test --workspaces"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19"
+  }
+}
