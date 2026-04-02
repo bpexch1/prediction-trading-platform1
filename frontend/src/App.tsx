@@ -1,20 +1,30 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Dashboard from './Dashboard'
 import './App.css'
 
 function App() {
-  const [status, setStatus] = useState<string>('Loading...')
+  const [backendConnected, setBackendConnected] = useState<boolean>(false)
 
   useEffect(() => {
     axios.get('/api/health')
-      .then(res => setStatus(`Backend connected: ${res.data.status}`))
-      .catch(err => setStatus(`Error: ${err.message}`))
+      .then(() => setBackendConnected(true))
+      .catch(() => setBackendConnected(false))
   }, [])
 
   return (
-    <div className="container">
-      <h1>Prediction Trading Platform</h1>
-      <p>Status: {status}</p>
+    <div className="app">
+      {!backendConnected && (
+        <div className="banner error">
+          ⚠️ Backend connection failed. Some features may not work.
+        </div>
+      )}
+      {backendConnected && (
+        <div className="banner success">
+          ✓ Backend connected successfully
+        </div>
+      )}
+      <Dashboard />
     </div>
   )
 }
