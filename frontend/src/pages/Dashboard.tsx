@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './Dashboard.css'
+import '../styles/Dashboard.css'
 
 interface User {
   id: string
